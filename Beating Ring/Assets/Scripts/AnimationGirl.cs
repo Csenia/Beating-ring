@@ -6,8 +6,14 @@ using UnityEngine;
 public class AnimationGirl : MonoBehaviour
 {
     private Animator _anim;
+    private Rigidbody2D rb;
+    [SerializeField]private float jumpForce = 10f;
     [SerializeField] private List<RuntimeAnimatorController> _controls = new List<RuntimeAnimatorController>();
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     private void Start()
     {
         _anim = GetComponent<Animator>();
@@ -26,6 +32,15 @@ public class AnimationGirl : MonoBehaviour
         else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
             _anim.runtimeAnimatorController = _controls[1];
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            _anim.runtimeAnimatorController = _controls[3];
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            _anim.runtimeAnimatorController = _controls[4];
         }
     }
 }

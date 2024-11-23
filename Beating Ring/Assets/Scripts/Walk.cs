@@ -17,7 +17,7 @@ public class Walk : MonoBehaviour
 
     void Update()
     {
-        _movement.x = Input.GetAxisRaw("Horizontal");
+        _movement.x = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
